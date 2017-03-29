@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -40,10 +41,16 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.ContatoV
     @Override
     public void onBindViewHolder(ContatoViewHolder holder, int position) {
 
-        Contato contato = this.contato.get(position);
+        final Contato contato = this.contato.get(position);
         holder.imgContato.setImageResource(contato.getImagem());
         holder.txtNome.setText(contato.getNome());
         holder.txtStatus.setText(contato.getStatus());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Clicou em " + contato.getNome(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
